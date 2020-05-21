@@ -2,13 +2,13 @@ import React from "react";
 import {connect} from 'react-redux'
 
 import CustomButton from "../custom-button/custom-button.component";
-
-import './card-dropdown.styles.scss'
 import CartItem from "../cart-item/cart-item.component";
 
-const CartDropdown = ({cartItems}) => {
-    console.log(cartItems);
-    return (
+import {selectCartItems} from "../../redux/cart/cart.selectors";
+
+import './card-dropdown.styles.scss'
+
+const CartDropdown = ({cartItems}) => (
         <div className='card-dropdown'>
             <div className='class-items'>
                 {cartItems.map(cartItem => (
@@ -18,10 +18,10 @@ const CartDropdown = ({cartItems}) => {
             <CustomButton>GO TO CHECKOUT</CustomButton>
         </div>
     );
-}
 
-const mapStateToProps = ({cart: {cartItems}}) => ({
-    cartItems
+
+const mapStateToProps = (state) => ({
+    cartItems: selectCartItems(state)
 });
 
 export default connect(mapStateToProps)(CartDropdown);
