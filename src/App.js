@@ -6,7 +6,7 @@ import {createStructuredSelector} from "reselect";
 import './App.css';
 
 import HomePage from './pages/homepage/homepage.component';
-import ShopPage from './pages/shop/shop.component.jsx';
+import ShopPage from './pages/shop/shop.component';
 import Header from "./components/header/header.component";
 import CheckoutPage from './pages/checkout/checkout.component';
 
@@ -20,7 +20,6 @@ class App extends React.Component {
 
     componentDidMount() {
         const {setCurrentUser} = this.props;
-        console.log(setCurrentUser);
         this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
             if (userAuth) {
                 const userRef = await createUserProfileDocument(userAuth);
